@@ -11,7 +11,7 @@ class security
   public:
   template<typename V>
    void accept(visitor<V>& v) {
-       static_cast<S*>(this)->template accept<S>(v);
+       static_cast<S*>(this)->template accept<V>(v);
    }
 
    std::string name = "none";

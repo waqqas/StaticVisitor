@@ -7,7 +7,7 @@ int main(void)
 {
 	security_type1 s1;
 	security_type2 s2;
-	// security<security_type1> s11;
+	security<security_type1> s11;
 
 	buyer b;
 	seller s;
@@ -18,7 +18,7 @@ int main(void)
 	s2.accept(s);
 
 
-	// s11.accept(b);
+	s11.accept(b);
 
 	return 0;
 }

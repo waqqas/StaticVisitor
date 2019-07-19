@@ -29,6 +29,6 @@ class seller : public visitor<seller>
     template<typename S>
     void visit(security<S>& security)
     {
-      std::cout<< "info: seller, " << security.name << std::endl;
+      std::cout<< "info: buyer, " << security.name << std::endl;
     }
 };
