@@ -1,25 +1,29 @@
 
-#include <iostream>
-#include "stock.h"
 #include "security.h"
+#include "stock.h"
+#include <iostream>
 
-int main(void)
-{
-	security_type1 s1;
-	security_type2 s2;
-	security<security_type1> s11;
+int main(void) {
 
-	buyer b;
-	seller s;
-	s1.accept(b);
-	s2.accept(b);
+  {
+    buyer buy{10};
+    seller sell{5};
+    security_type1 s1;
 
-	s1.accept(s);
-	s2.accept(s);
+    s1.accept(buy);
+    s1.accept(sell);
+    std::cout << "s1: count " << s1.count << std::endl;
+  }
+  {
+    buyer buy{5};
+    seller sell{10};
+    security_type2 s2;
+    s2.accept(buy);
+    s2.accept(sell);
 
+    std::cout << "s2: count " << s2.count << std::endl;
 
-	s11.accept(b);
+  }
 
-	return 0;
+  return 0;
 }
-
