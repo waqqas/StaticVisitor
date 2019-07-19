@@ -7,12 +7,14 @@ template<typename T>
 class stock
 {
   public:
-   virtual void accept(visitor& v)= 0;
+   void accept(visitor& v) {
+       static_cast<T*>(this)->accept(v);
+   }   
 };
 
 class security_type1 : public stock<security_type1> {
   public:
-    virtual void accept(visitor& v) override
+    void accept(visitor& v)
     {
       v.visit(*this);
     }
@@ -21,7 +23,7 @@ class security_type1 : public stock<security_type1> {
 
 class security_type2 : public stock<security_type2> {
   public:
-    virtual void accept(visitor& v) override
+    void accept(visitor& v)
     {
       v.visit(*this);
     }
