@@ -1,31 +1,41 @@
 #pragma once
+
 #include <string>
 
-#include "visitor.h"
-
 template<typename T>
-class stock
+class visitor;
+
+template<typename S>
+class security
 {
   public:
-   void accept(visitor& v) {
-       static_cast<T*>(this)->accept(v);
-   }   
+  template<typename V>
+   void accept(visitor<V>& v) {
+       static_cast<S*>(this)->template accept<S>(v);
+   }
+
+   std::string name = "none";
+
 };
 
-class security_type1 : public stock<security_type1> {
+class security_type1 : public security<security_type1> {
   public:
-    void accept(visitor& v)
+    security_type1(): security{"type1"} {}
+    template<typename V>
+    void accept(visitor<V>& v)
     {
-      v.visit(*this);
+      v.template visit<security_type1>(*this);
     }
 };
 
 
-class security_type2 : public stock<security_type2> {
+class security_type2 : public security<security_type2> {
   public:
-    void accept(visitor& v)
+  security_type2(): security{"type2"} {}
+  template<typename V>
+    void accept(visitor<V>& v)
     {
-      v.visit(*this);
+      v.template visit<security_type2>(*this);
     }
 };
 
