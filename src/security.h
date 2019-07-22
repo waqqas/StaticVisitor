@@ -9,6 +9,8 @@ template <typename S>
 class security
 {
 public:
+  security(std::string name): name(name){}
+  
   template <typename V>
   void accept(operation<V> &v)
   {
@@ -33,7 +35,7 @@ class security_type1 : public security<security_type1>
 {
 public:
   security_type1()
-    : security{"type1"}
+    : security("type1")
   {}
   template <typename V>
   void accept(operation<V> &v)
@@ -46,7 +48,7 @@ class security_type2 : public security<security_type2>
 {
 public:
   security_type2()
-    : security{"type2"}
+    : security("type2")
   {}
   template <typename V>
   void accept(operation<V> &v)

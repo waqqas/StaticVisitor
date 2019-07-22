@@ -12,7 +12,7 @@ Language: Cpp
 NamespaceIndentation: None
 SpaceInEmptyParentheses: 'false'
 SpacesInAngles: 'false'
-Standard: Cpp17
+Standard: Cpp11
 UseTab: Never
 ColumnLimit: 100
 AlignConsecutiveAssignments: true

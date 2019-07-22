@@ -7,6 +7,8 @@ template <typename V>
 class operation
 {
 public:
+  operation(int32_t count = 0): _count(count){}
+
   template <typename S>
   void visit(security<S> &v)
   {
@@ -18,6 +20,7 @@ public:
 class buyer : public operation<buyer>
 {
 public:
+  buyer(int32_t count = 0): operation(count) {} 
   template <typename S>
   void visit(security<S> &security)
   {
@@ -29,6 +32,7 @@ public:
 class seller : public operation<seller>
 {
 public:
+  seller(int32_t count = 0): operation(count) {}
   template <typename S>
   void visit(security<S> &security)
   {
