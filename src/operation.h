@@ -1,0 +1,38 @@
+#pragma once
+
+#include <iostream>
+#include <security.h>
+
+template <typename V>
+class operation
+{
+public:
+  template <typename S>
+  void visit(security<S> &v)
+  {
+    static_cast<V *>(this)->template visit<S>(v);
+  }
+  int32_t _count = 0;
+};
+
+class buyer : public operation<buyer>
+{
+public:
+  template <typename S>
+  void visit(security<S> &security)
+  {
+    std::cout << "info: buyer, " << security.name << std::endl;
+    security.increment(_count);
+  }
+};
+
+class seller : public operation<seller>
+{
+public:
+  template <typename S>
+  void visit(security<S> &security)
+  {
+    std::cout << "info: buyer, " << security.name << std::endl;
+    security.decrement(_count);
+  }
+};

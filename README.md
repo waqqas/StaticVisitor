@@ -8,8 +8,8 @@ The app shows two securities and buy/sell operations on these.
 Files
 ---
 
-stock.h:    Base class for security and two securities (type 1 and 2)
-security.h: Base class for visitor and two operators (buyer and seller)
+security.h:    Base class for security and two securities (type 1 and 2)
+operation.h: Base class for visitor and two operators (buyer and seller)
 
 Sample Output
 ---

@@ -1,28 +1,56 @@
 #pragma once
 
-#include <iostream>
-#include <stock.h>
+#include <string>
 
-template <typename V> class visitor {
+template <typename T>
+class operation;
+
+template <typename S>
+class security
+{
 public:
-  template <typename S> void visit(security<S> &v) {
-    static_cast<V *>(this)->template visit<S>(v);
+  template <typename V>
+  void accept(operation<V> &v)
+  {
+    static_cast<S *>(this)->template accept<V>(v);
   }
-  int32_t _count = 0;
+
+  void increment(int32_t inc)
+  {
+    count += inc;
+  }
+
+  void decrement(int32_t dec)
+  {
+    count -= dec;
+  }
+
+  std::string name  = "none";
+  int32_t     count = 0;
 };
 
-class buyer : public visitor<buyer> {
+class security_type1 : public security<security_type1>
+{
 public:
-  template <typename S> void visit(security<S> &security) {
-    std::cout << "info: buyer, " << security.name << std::endl;
-    security.increment(_count);
+  security_type1()
+    : security{"type1"}
+  {}
+  template <typename V>
+  void accept(operation<V> &v)
+  {
+    v.template visit<security_type1>(*this);
   }
 };
 
-class seller : public visitor<seller> {
+class security_type2 : public security<security_type2>
+{
 public:
-  template <typename S> void visit(security<S> &security) {
-    std::cout << "info: buyer, " << security.name << std::endl;
-    security.decrement(_count);
+  security_type2()
+    : security{"type2"}
+  {}
+  template <typename V>
+  void accept(operation<V> &v)
+  {
+    v.template visit<security_type2>(*this);
   }
 };
