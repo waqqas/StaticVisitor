@@ -21,3 +21,8 @@ info: buyer, type2
 info: buyer, type2
 s2: count -5
 
+References
+---
+
+https://cpppatterns.com/patterns/visitor.html
+https://sourcemaking.com/design_patterns/visitor
