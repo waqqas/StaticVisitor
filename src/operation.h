@@ -36,7 +36,7 @@ public:
   template <typename S>
   void visit(security<S> &security)
   {
-    std::cout << "info: buyer, " << security.name << std::endl;
+    std::cout << "info: seller, " << security.name << std::endl;
     security.decrement(_count);
   }
 };
