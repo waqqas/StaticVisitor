@@ -9,8 +9,10 @@ template <typename S>
 class security
 {
 public:
-  security(std::string name): name(name){}
-  
+  security(std::string name)
+    : name(name)
+  {}
+
   template <typename V>
   void accept(operation<V> &v)
   {
