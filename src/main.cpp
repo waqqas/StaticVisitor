@@ -1,27 +1,25 @@
 
-#include "operation.h"
+#include "event.h"
+
 #include <iostream>
 
 int main(void)
 {
 
   {
-    buyer          buy(10);
-    seller         sell(5);
-    security_type1 s1;
+    buy_event   buy(10);
+    sell_event  sell(5);
+    state1 s1;
 
-    s1.accept(buy);
-    s1.accept(sell);
-    std::cout << "s1: count " << s1.count << std::endl;
+    s1.post(buy);
+    s1.post(sell);
   }
   {
-    buyer          buy(5);
-    seller         sell(10);
-    security_type2 s2;
-    s2.accept(buy);
-    s2.accept(sell);
-
-    std::cout << "s2: count " << s2.count << std::endl;
+    buy_event   buy(5);
+    sell_event  sell(10);
+    state2 s2;
+    s2.post(buy);
+    s2.post(sell);
   }
 
   return 0;
