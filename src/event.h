@@ -14,7 +14,7 @@ public:
   {}
 
   template <typename S>
-  void react(state<S> &v)
+  inline void react(S &v)
   {
     static_cast<V *>(this)->template react<S>(v);
   }
@@ -29,9 +29,15 @@ public:
   {}
 
   template <typename S>
-  void react(state<S> &state)
+  void react(S &state)
   {
-    std::cout << "info: buy_event" << std::endl;
+    std::cout << "info: buy_event, other state" << std::endl;
+  }
+
+  template <>
+  void react(state1 &state)
+  {
+    std::cout << "info: buy_event, state1" << std::endl;
   }
 };
 
@@ -42,7 +48,7 @@ public:
     : event(count)
   {}
   template <typename S>
-  void react(state<S> &state)
+  void react(S &state)
   {
     std::cout << "info: sell_event" << std::endl;
   }
