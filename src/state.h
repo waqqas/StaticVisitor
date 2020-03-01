@@ -1,29 +1,17 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include <iostream>
 #include <string>
+#include "fsm/state.h"
 
-template <typename T>
-class event;
-
-template <typename S>
-class state
+class base_state : public state<base_state>
 {
-public:
-  template <typename V>
-  inline void post(event<V> &v)
-  {
-    static_cast<S *>(this)->template post<V>(v);
-  }
-
-  // template <typename V>
-  // void transit(event<V> &v)
-  // {
-  //   static_cast<S *>(this)->template post<V>(v);
-  // }
 };
 
-class state1 : public state<state1>
+// class state2;
+
+class state1 : base_state
 {
 public:
   template <typename V>
@@ -31,9 +19,15 @@ public:
   {
     v.template react<state1>(*this);
   }
+
+  // template <>
+  // void transition<state2>()
+  // {
+  //   std::cout << "state1 => state2" << std::endl;
+  // }
 };
 
-class state2 : public state<state2>
+class state2 : base_state
 {
 public:
   template <typename V>

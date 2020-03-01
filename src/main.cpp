@@ -10,6 +10,7 @@ int main(void)
     buy_event   buy(10);
     sell_event  sell(5);
     state1 s1;
+    state2 s2;
 
     s1.post(buy);
     s1.post(sell);
