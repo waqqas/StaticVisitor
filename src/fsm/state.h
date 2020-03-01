@@ -2,16 +2,18 @@
 
 #include "fsm/event.h"
 
-template <typename E>
-class event;
-
+namespace Pico {
+namespace Fsm {
 template <typename S>
-class state
+class State
 {
 public:
   template <typename E>
-  inline void post(event<E> &v)
+  inline void post(E &event)
   {
-    static_cast<S *>(this)->template post<E>(v);
+    static_cast<S *>(this)->template post<E>(event);
   }
 };
+
+}  // namespace Fsm
+}  // namespace Pico

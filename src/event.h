@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-class buy_event : public event<buy_event>
+class buy_event : public Pico::Fsm::Event<buy_event>
 {
 public:
   template <typename S>
@@ -23,7 +23,7 @@ public:
   }
 };
 
-class sell_event : public event<sell_event>
+class sell_event : public Pico::Fsm::Event<sell_event>
 {
 public:
   template <typename S>
