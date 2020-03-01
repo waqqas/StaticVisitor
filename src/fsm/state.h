@@ -2,16 +2,16 @@
 
 #include "fsm/event.h"
 
-template <typename T>
+template <typename E>
 class event;
 
 template <typename S>
 class state
 {
 public:
-  template <typename V>
-  inline void post(event<V> &v)
+  template <typename E>
+  inline void post(event<E> &v)
   {
-    static_cast<S *>(this)->template post<V>(v);
+    static_cast<S *>(this)->template post<E>(v);
   }
 };
