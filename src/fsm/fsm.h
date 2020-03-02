@@ -34,6 +34,10 @@ public:
     current.template post<E>(*this, event);
   }
 
+  template <typename S2>
+  void transition()
+  {}
+
 private:
   using state_list = std::tuple<State, States...>;
 

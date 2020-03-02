@@ -12,14 +12,15 @@ public:
   void react(typename Pico::Fsm::Fsm<State, States...> &fsm, S &state)
   {
     std::cout << "info: buy_event" << std::endl;
+    fsm.template transition<state2>();
   }
 
   // handling buy_event in state1
-  // template <>
-  // void react(state1 &state)
-  // {
-  //   std::cout << "info: buy_event, state1" << std::endl;
-  // }
+  template <typename S = state1, typename State, typename... States>
+  void react(typename Pico::Fsm::Fsm<State, States...> &fsm, state1 &state)
+  {
+    std::cout << "info: buy_event, state1" << std::endl;
+  }
 };
 
 class sell_event : public Pico::Fsm::Event<sell_event>
