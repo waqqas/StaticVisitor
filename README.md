@@ -13,11 +13,11 @@ Building
 Sample Output
 ---
 ```
-info: buy_event, type1
-info: sell_event, type1
+info: BuyEvent, type1
+info: SellEvent, type1
 s1: count 5
-info: buy_event, type2
-info: sell_event, type2
+info: BuyEvent, type2
+info: SellEvent, type2
 s2: count -5
 ```
 

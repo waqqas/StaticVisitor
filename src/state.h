@@ -6,37 +6,33 @@
 #include <iostream>
 #include <string>
 
-class base_state : public Pico::Fsm::State<base_state>
-{
-};
-
-class state1 : base_state
+class State1 : Pico::Fsm::StateBase
 {
 public:
-  template <typename E, typename State, typename... States>
-  void post(typename Pico::Fsm::Fsm<State, States...> &fsm, E &event)
+  template <typename E, typename... States>
+  void post(typename Pico::Fsm::Fsm<States...> &fsm, E &event)
   {
-    event.template react<state1>(fsm, *this);
+    event.template react<State1>(fsm, *this);
   }
 };
 
-class state2 : base_state
+class State2 : Pico::Fsm::StateBase
 {
 public:
-  template <typename E, typename State, typename... States>
-  void post(typename Pico::Fsm::Fsm<State, States...> &fsm, E &event)
+  template <typename E, typename... States>
+  void post(typename Pico::Fsm::Fsm<States...> &fsm, E &event)
   {
-    event.template react<state2>(fsm, *this);
+    event.template react<State2>(fsm, *this);
   }
 };
 
-class state3 : base_state
+class State3 : Pico::Fsm::StateBase
 {
 public:
-  template <typename E, typename State, typename... States>
-  void post(typename Pico::Fsm::Fsm<State, States...> &fsm, E &event)
+  template <typename E, typename... States>
+  void post(typename Pico::Fsm::Fsm<States...> &fsm, E &event)
   {
-    event.template react<state3>(fsm, *this);
+    event.template react<State3>(fsm, *this);
   }
 };
 

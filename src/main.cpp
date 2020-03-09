@@ -6,10 +6,10 @@
 
 int main(void)
 {
-  Pico::Fsm::Fsm<state1, state2, state3> fsm;
+  Pico::Fsm::Fsm<State1, State2, State3> fsm;
 
-  buy_event  buy;
-  sell_event sell;
+  BuyEvent  buy;
+  SellEvent sell;
 
   fsm.post(buy);
   fsm.post(sell);

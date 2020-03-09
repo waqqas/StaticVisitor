@@ -18,36 +18,42 @@ public:
 };
 
 template <typename S>
-class State;
+class State
+{
+};
 
-template <typename State, typename... States>
+class StateBase : public Pico::Fsm::State<StateBase>
+{
+};
+
+template <typename... States>
 class Fsm
 {
 public:
   Fsm()
-    : current(std::get<0>(states))  // first state is the initial state
-  {}
+  {
+    current = (void *)&std::get<0>(states);  // first state is the initial state
+  }
 
   template <typename E>
   inline void post(E &event)
   {
-    current.template post<E>(*this, event);
+    // current->template post<E>(*this, event);
   }
 
   template <typename S2>
   void transition()
-  {}
+  {
+    constexpr int index = 1;
+    current             = (void *)&std::get<1>(states);
+  }
 
 private:
-  using state_list = std::tuple<State, States...>;
+  using state_list = std::tuple<States...>;
+  // using FirstState = typename std::tuple_element<0, state_list>::type;
 
   state_list states;
-  State &    current;
-};
-
-template <typename S>
-class State
-{
+  void *     current;
 };
 
 }  // namespace Fsm

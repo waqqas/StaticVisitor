@@ -5,31 +5,31 @@
 
 #include <iostream>
 
-class buy_event : public Pico::Fsm::Event<buy_event>
+class BuyEvent : public Pico::Fsm::Event<BuyEvent>
 {
 public:
-  template <typename S, typename State, typename... States>
-  void react(typename Pico::Fsm::Fsm<State, States...> &fsm, S &state)
+  template <typename S, typename... States>
+  void react(typename Pico::Fsm::Fsm<States...> &fsm, S &state)
   {
-    std::cout << "info: buy_event" << std::endl;
-    fsm.template transition<state2>();
+    std::cout << "info: BuyEvent" << std::endl;
   }
 
-  // handling buy_event in state1
-  template <typename S = state1, typename State, typename... States>
-  void react(typename Pico::Fsm::Fsm<State, States...> &fsm, state1 &state)
+  // handling BuyEvent in State1
+  template <typename S = State1, typename... States>
+  void react(typename Pico::Fsm::Fsm<States...> &fsm, State1 &state)
   {
-    std::cout << "info: buy_event, state1" << std::endl;
+    std::cout << "info: BuyEvent, State1" << std::endl;
+    fsm.template transition<State2>();
   }
 };
 
-class sell_event : public Pico::Fsm::Event<sell_event>
+class SellEvent : public Pico::Fsm::Event<SellEvent>
 {
 public:
-  template <typename S, typename State, typename... States>
-  void react(typename Pico::Fsm::Fsm<State, States...> &fsm, S &state)
+  template <typename S, typename... States>
+  void react(typename Pico::Fsm::Fsm<States...> &fsm, S &state)
   {
-    std::cout << "info: sell_event" << std::endl;
+    std::cout << "info: SellEvent" << std::endl;
   }
 };
 
